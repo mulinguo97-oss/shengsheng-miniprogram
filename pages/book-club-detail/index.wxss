@@ -1,0 +1,22 @@
+.detail-meta {
+  margin-top: 18rpx;
+  color: #6d7e63;
+  font-size: 26rpx;
+  line-height: 1.6;
+}
+
+.content,
+.form-card {
+  padding: 30rpx;
+}
+
+.paragraph {
+  margin-top: 18rpx;
+}
+
+.form-title {
+  margin-bottom: 18rpx;
+  color: #314d37;
+  font-size: 32rpx;
+  font-weight: 700;
+}

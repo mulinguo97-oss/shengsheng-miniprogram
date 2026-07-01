@@ -1,0 +1,32 @@
+<view class="page about-page">
+  <view class="eyebrow">了解生生</view>
+  <view class="title">以文化陪伴家庭成长</view>
+  <view class="body intro">生生文化以中华文明为根基，以全球视野为胸怀，通过读书、运动、游学、艺术美育等方式陪伴家庭成长。</view>
+
+  <view class="section card values">
+    <view class="value-item">
+      <view class="value-title">读书</view>
+      <view class="body">经典共读、表达训练、长期社群。</view>
+    </view>
+    <view class="value-item">
+      <view class="value-title">运动</view>
+      <view class="body">亲子跑团、家庭陪伴、身体力行。</view>
+    </view>
+    <view class="value-item">
+      <view class="value-title">游学</view>
+      <view class="body">在行走中感知中华文明的温度。</view>
+    </view>
+  </view>
+
+  <view class="section">
+    <t-cell-group theme="card">
+      <t-cell title="品牌顾问" note="了解生生文化定位和使命" arrow bindtap="goAssistant" />
+      <t-cell title="读书会顾问" note="咨询课程、场次和报名" arrow bindtap="goAssistant" />
+      <t-cell title="跑团助手" note="咨询时间、地点和注意事项" arrow bindtap="goAssistant" />
+    </t-cell-group>
+  </view>
+
+  <view class="section">
+    <t-button theme="primary" shape="round" block bindtap="goAssistant">打开生生助手</t-button>
+  </view>
+</view>

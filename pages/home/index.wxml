@@ -1,0 +1,47 @@
+<view class="page home-page">
+  <view class="hero">
+    <view class="eyebrow">生生文化</view>
+    <view class="title">让家庭在日常里亲近中华文化</view>
+    <view class="body hero-text">以读书、运动、游学和艺术美育为入口，陪伴孩子与家长建立稳定、温暖、长期的文化生活。</view>
+    <view class="hero-actions">
+      <t-button theme="primary" shape="round" bindtap="goBookClub">读书会</t-button>
+      <t-button variant="outline" shape="round" bindtap="goParentRun">亲子跑团</t-button>
+    </view>
+  </view>
+
+  <view class="section feature-grid">
+    <view class="feature-card card" bindtap="goBookClub">
+      <view class="feature-title">生生读书会</view>
+      <view class="feature-desc">经典共读、日常打卡、书友分享。</view>
+    </view>
+    <view class="feature-card card" bindtap="goParentRun">
+      <view class="feature-title">生生亲子跑团</view>
+      <view class="feature-desc">用晨跑连接家庭陪伴与身体力行。</view>
+    </view>
+    <view class="feature-card card" bindtap="goAssistant">
+      <view class="feature-title">生生助手</view>
+      <view class="feature-desc">咨询品牌、课程、活动和报名问题。</view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-header">
+      <view>
+        <view class="eyebrow">活动动态</view>
+        <view class="section-title">近期安排</view>
+      </view>
+    </view>
+
+    <block wx:for="{{activities}}" wx:key="id" wx:for-item="activity">
+      <view class="activity-card card" data-id="{{activity.id}}" bindtap="goActivityDetail">
+        <view class="activity-top">
+          <t-tag theme="{{activity.isPinned ? 'success' : 'default'}}" variant="light">{{activity.category}}</t-tag>
+          <text class="activity-date">{{activity.dateTime}}</text>
+        </view>
+        <view class="activity-title">{{activity.title}}</view>
+        <view class="body">{{activity.summary}}</view>
+        <view class="activity-place">{{activity.place}}</view>
+      </view>
+    </block>
+  </view>
+</view>

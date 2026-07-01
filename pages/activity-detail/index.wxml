@@ -1,0 +1,14 @@
+<view class="page detail-page" wx:if="{{activity}}">
+  <view class="eyebrow">{{activity.category}}</view>
+  <view class="title">{{activity.title}}</view>
+  <view class="detail-meta">{{activity.dateTime}} · {{activity.place}}</view>
+
+  <view class="section card content">
+    <view class="body">{{activity.summary}}</view>
+    <view class="body paragraph">后续接入后端内容系统后，这里会展示活动完整正文、图文内容和报名/跳转入口。</view>
+  </view>
+
+  <view class="section">
+    <t-button theme="primary" shape="round" block bindtap="goAssistant">咨询生生助手</t-button>
+  </view>
+</view>

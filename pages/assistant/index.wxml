@@ -1,0 +1,25 @@
+<view class="page assistant-page">
+  <view class="eyebrow">多智能体协同</view>
+  <view class="title">生生助手</view>
+  <view class="body intro">一期先使用本地兜底回答；后续接入后端编排器，路由到品牌顾问、读书会顾问和跑团助手。</view>
+
+  <view class="preset-list">
+    <t-tag data-question="生生文化是什么？" bindtap="askPreset">生生文化</t-tag>
+    <t-tag data-question="读书会适合谁参加？" bindtap="askPreset">读书会</t-tag>
+    <t-tag data-question="亲子跑团怎么报名？" bindtap="askPreset">亲子跑团</t-tag>
+  </view>
+
+  <view class="chat-list">
+    <block wx:for="{{messages}}" wx:key="index" wx:for-item="message">
+      <view class="message {{message.role === 'user' ? 'message-user' : 'message-assistant'}}">
+        <view class="message-role">{{message.role === 'user' ? '我' : '生生助手'}}</view>
+        <view class="message-content">{{message.content}}</view>
+      </view>
+    </block>
+  </view>
+
+  <view class="composer card">
+    <input class="composer-input" value="{{inputValue}}" placeholder="输入你的问题" confirm-type="send" bindinput="onInput" bindconfirm="sendMessage" />
+    <t-button theme="primary" size="small" loading="{{loading}}" bindtap="sendMessage">发送</t-button>
+  </view>
+</view>

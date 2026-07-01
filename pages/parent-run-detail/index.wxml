@@ -1,0 +1,24 @@
+<view class="page detail-page" wx:if="{{event}}">
+  <view class="eyebrow">生生亲子跑团</view>
+  <view class="title">{{event.title}}</view>
+  <view class="detail-meta">{{event.date}} {{event.time}} · {{event.place}}</view>
+
+  <view class="section card content">
+    <view class="body">路线：{{event.distance}}</view>
+    <view class="body paragraph">说明：{{event.notes}}</view>
+    <view class="capacity">
+      <text>{{event.signupCount}} / {{event.capacity}} 人</text>
+      <t-progress percentage="{{event.signupCount * 100 / event.capacity}}" color="#587a5b" />
+    </view>
+  </view>
+
+  <view class="section card form-card">
+    <view class="form-title">报名信息</view>
+    <t-input label="家长" placeholder="请输入家长姓名" value="{{parentName}}" bind:change="onParentNameChange" />
+    <t-input label="手机号" placeholder="请输入手机号" value="{{phone}}" type="number" bind:change="onPhoneChange" />
+    <t-input label="孩子年龄" placeholder="如：7 岁" value="{{childAge}}" bind:change="onChildAgeChange" />
+    <t-input label="人数" placeholder="报名人数" value="{{participantCount}}" type="number" bind:change="onCountChange" />
+    <t-textarea label="备注" placeholder="可填写健康提醒、同行情况或其他说明" value="{{note}}" bind:change="onNoteChange" />
+    <t-button theme="primary" shape="round" block loading="{{submitting}}" disabled="{{submitting}}" bindtap="submitSignup">提交跑团报名</t-button>
+  </view>
+</view>

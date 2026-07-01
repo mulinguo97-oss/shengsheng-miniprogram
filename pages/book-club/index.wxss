@@ -1,0 +1,39 @@
+.intro {
+  margin-top: 20rpx;
+}
+
+.course-card {
+  margin-top: 22rpx;
+  padding: 30rpx;
+}
+
+.course-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20rpx;
+}
+
+.course-title {
+  color: #314d37;
+  font-size: 34rpx;
+  font-weight: 700;
+}
+
+.course-lecturer {
+  margin-top: 10rpx;
+  color: #6d7e63;
+  font-size: 26rpx;
+}
+
+.course-summary {
+  margin-top: 20rpx;
+}
+
+.course-meta {
+  display: flex;
+  justify-content: space-between;
+  margin: 26rpx 0;
+  color: #7b8675;
+  font-size: 24rpx;
+}

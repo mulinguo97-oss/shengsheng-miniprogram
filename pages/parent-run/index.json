@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "生生亲子跑团",
+  "usingComponents": {
+    "t-button": "tdesign-miniprogram/button/button",
+    "t-progress": "tdesign-miniprogram/progress/progress",
+    "t-tag": "tdesign-miniprogram/tag/tag"
+  }
+}

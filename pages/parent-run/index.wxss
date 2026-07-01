@@ -1,0 +1,45 @@
+.intro {
+  margin-top: 20rpx;
+}
+
+.run-card {
+  margin-top: 22rpx;
+  padding: 30rpx;
+}
+
+.run-date {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.date-main {
+  color: #6d7e63;
+  font-size: 26rpx;
+  font-weight: 600;
+}
+
+.run-title {
+  margin-top: 18rpx;
+  color: #314d37;
+  font-size: 34rpx;
+  font-weight: 700;
+}
+
+.run-info {
+  margin-top: 12rpx;
+  color: #66725e;
+  font-size: 26rpx;
+}
+
+.notes {
+  margin-top: 20rpx;
+}
+
+.capacity {
+  display: grid;
+  gap: 14rpx;
+  margin: 28rpx 0;
+  color: #6d7e63;
+  font-size: 24rpx;
+}

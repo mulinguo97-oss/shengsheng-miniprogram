@@ -1,0 +1,24 @@
+<view class="page run-page">
+  <view class="eyebrow">生生亲子跑团</view>
+  <view class="title">用晨跑连接家庭陪伴</view>
+  <view class="body intro">一期展示活动时间、集合地点、路线距离、名额和轻量报名入口。</view>
+
+  <view class="section">
+    <block wx:for="{{events}}" wx:key="id" wx:for-item="item">
+      <view class="run-card card">
+        <view class="run-date">
+          <view class="date-main">{{item.date}}</view>
+          <t-tag theme="success" variant="light">{{item.time}}</t-tag>
+        </view>
+        <view class="run-title">{{item.title}}</view>
+        <view class="run-info">{{item.place}} · {{item.distance}}</view>
+        <view class="body notes">{{item.notes}}</view>
+        <view class="capacity">
+          <text>{{item.signupCount}} / {{item.capacity}} 人</text>
+          <t-progress percentage="{{item.signupCount * 100 / item.capacity}}" color="#587a5b" />
+        </view>
+        <t-button theme="primary" shape="round" data-id="{{item.id}}" bindtap="goDetail">查看并报名</t-button>
+      </view>
+    </block>
+  </view>
+</view>

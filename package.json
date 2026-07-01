@@ -1,0 +1,17 @@
+{
+  "name": "shengsheng-miniprogram",
+  "version": "0.1.0",
+  "private": true,
+  "description": "生生微信小程序一期工程",
+  "scripts": {
+    "typecheck": "tsc --noEmit --project tsconfig.json"
+  },
+  "dependencies": {
+    "tdesign-miniprogram": "^1.15.2"
+  },
+  "devDependencies": {
+    "miniprogram-api-typings": "^5.2.1",
+    "miniprogram-ci": "^2.1.31",
+    "typescript": "^5.9.3"
+  }
+}

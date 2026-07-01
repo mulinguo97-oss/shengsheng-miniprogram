@@ -1,0 +1,25 @@
+<view class="page book-page">
+  <view class="eyebrow">生生读书会</view>
+  <view class="title">用稳定节奏共读经典</view>
+  <view class="body intro">一期先提供课程列表、场次信息和轻量报名入口；完整会员登录后续再接入。</view>
+
+  <view class="section">
+    <block wx:for="{{courses}}" wx:key="id" wx:for-item="course">
+      <view class="course-card card">
+        <view class="course-head">
+          <view>
+            <view class="course-title">{{course.bookTitle}}</view>
+            <view class="course-lecturer">主讲：{{course.lecturer}}</view>
+          </view>
+          <t-tag theme="success" variant="light">{{course.nextSessionDate}}</t-tag>
+        </view>
+        <view class="body course-summary">{{course.summary}}</view>
+        <view class="course-meta">
+          <text>{{course.participantCount}} 人已关注</text>
+          <text>近期场次</text>
+        </view>
+        <t-button theme="primary" shape="round" data-id="{{course.id}}" bindtap="goDetail">查看并报名</t-button>
+      </view>
+    </block>
+  </view>
+</view>

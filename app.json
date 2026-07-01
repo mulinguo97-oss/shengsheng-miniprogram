@@ -1,0 +1,46 @@
+{
+  "pages": [
+    "pages/home/index",
+    "pages/book-club/index",
+    "pages/book-club-detail/index",
+    "pages/parent-run/index",
+    "pages/parent-run-detail/index",
+    "pages/activity-detail/index",
+    "pages/about/index",
+    "pages/assistant/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "生生",
+    "navigationBarBackgroundColor": "#f7f1e4",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f7f1e4",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#6f8069",
+    "selectedColor": "#36543c",
+    "backgroundColor": "#fbf8ef",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/book-club/index",
+        "text": "读书会"
+      },
+      {
+        "pagePath": "pages/parent-run/index",
+        "text": "跑团"
+      },
+      {
+        "pagePath": "pages/about/index",
+        "text": "了解生生"
+      }
+    ]
+  },
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents",
+  "sitemapLocation": "sitemap.json"
+}

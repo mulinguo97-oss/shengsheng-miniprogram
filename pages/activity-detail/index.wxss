@@ -1,0 +1,14 @@
+.detail-meta {
+  margin-top: 18rpx;
+  color: #6d7e63;
+  font-size: 26rpx;
+  line-height: 1.6;
+}
+
+.content {
+  padding: 30rpx;
+}
+
+.paragraph {
+  margin-top: 20rpx;
+}

@@ -1,0 +1,80 @@
+.hero {
+  overflow: hidden;
+  padding: 40rpx 34rpx;
+  border-radius: 24rpx;
+  background: linear-gradient(135deg, #fbf8ef 0%, #e5ead8 100%);
+}
+
+.hero-text {
+  margin-top: 24rpx;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 20rpx;
+  margin-top: 34rpx;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20rpx;
+}
+
+.feature-card {
+  padding: 28rpx;
+}
+
+.feature-title {
+  color: #314d37;
+  font-size: 32rpx;
+  font-weight: 700;
+}
+
+.feature-desc {
+  margin-top: 12rpx;
+  color: #66725e;
+  font-size: 26rpx;
+  line-height: 1.7;
+}
+
+.section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.section-title {
+  margin-top: 8rpx;
+  font-size: 36rpx;
+  font-weight: 700;
+}
+
+.activity-card {
+  margin-top: 20rpx;
+  padding: 28rpx;
+}
+
+.activity-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16rpx;
+}
+
+.activity-date,
+.activity-place {
+  color: #7b8675;
+  font-size: 24rpx;
+}
+
+.activity-title {
+  margin-top: 18rpx;
+  color: #314d37;
+  font-size: 32rpx;
+  font-weight: 700;
+}
+
+.activity-place {
+  margin-top: 18rpx;
+}
