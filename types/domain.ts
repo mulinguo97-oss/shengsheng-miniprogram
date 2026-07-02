@@ -6,10 +6,12 @@ export type ActivityPost = {
   place: string;
   category: string;
   isPinned?: boolean;
+  contentHtml?: string;
 };
 
 export type BookClubCourse = {
   id: string;
+  sessionId?: string;
   bookTitle: string;
   lecturer: string;
   lecturerBio?: string;

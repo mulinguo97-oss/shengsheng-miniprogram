@@ -16,6 +16,6 @@
     <t-input label="手机号" placeholder="请输入手机号" value="{{phone}}" type="number" bind:change="onPhoneChange" />
     <t-input label="人数" placeholder="报名人数" value="{{participantCount}}" type="number" bind:change="onCountChange" />
     <t-textarea label="备注" placeholder="可填写孩子年龄、同行情况或关注问题" value="{{note}}" bind:change="onNoteChange" />
-    <t-button theme="primary" shape="round" block bindtap="submitSignup">提交报名意向</t-button>
+    <t-button theme="primary" shape="round" block loading="{{submitting}}" disabled="{{submitting}}" bindtap="submitSignup">提交报名意向</t-button>
   </view>
 </view>
