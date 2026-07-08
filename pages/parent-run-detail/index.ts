@@ -4,6 +4,7 @@ import { ParentRunEvent } from "../../types/domain";
 Page({
   data: {
     event: undefined as ParentRunEvent | undefined,
+    errorMessage: "",
     parentName: "",
     phone: "",
     childAge: "",
@@ -13,13 +14,21 @@ Page({
   },
 
   async onLoad(query: Record<string, string | undefined>) {
-    const event = await getParentRunEvent(query.id || "");
-    if (!event) {
-      wx.showToast({ title: "活动不存在", icon: "none" });
-      return;
-    }
+    try {
+      const event = await getParentRunEvent(query.id || "");
+      if (!event) {
+        const errorMessage = "活动不存在";
+        this.setData({ errorMessage });
+        wx.showToast({ title: errorMessage, icon: "none" });
+        return;
+      }
 
-    this.setData({ event });
+      this.setData({ event });
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : "跑团数据暂时不可用，请稍后重试。";
+      this.setData({ errorMessage });
+      wx.showToast({ title: errorMessage, icon: "none" });
+    }
   },
 
   onParentNameChange(event: WechatMiniprogram.CustomEvent<{ value: string }>) {

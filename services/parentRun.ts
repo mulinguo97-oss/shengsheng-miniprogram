@@ -1,4 +1,5 @@
 import { parentRunEvents } from "../data/mock";
+import { shouldUseMockFallback } from "../config/env";
 import { request } from "./request";
 import { ParentRunEvent, ParentRunGuestSignupPayload } from "../types/domain";
 
@@ -14,6 +15,10 @@ export async function fetchParentRunEvents(): Promise<ParentRunEvent[]> {
           : 0
     }));
   } catch (error) {
+    if (!shouldUseMockFallback()) {
+      throw new Error("跑团数据暂时不可用，请稍后重试。");
+    }
+
     console.warn("读取跑团接口失败，使用本地示例数据", error);
     return parentRunEvents;
   }

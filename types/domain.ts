@@ -1,3 +1,23 @@
+export type ActivityContentListItem = {
+  id: string;
+  text: string;
+  marker: string;
+};
+
+export type ActivityContentBlock = {
+  id: string;
+  type: "heading" | "paragraph" | "image" | "quote" | "list" | "divider" | "notice";
+  text: string;
+  level: number;
+  url: string;
+  alt: string;
+  caption: string;
+  items: ActivityContentListItem[];
+  style: "ordered" | "unordered";
+  variant: "info" | "success" | "warning";
+  title: string;
+};
+
 export type ActivityPost = {
   id: string;
   title: string;
@@ -5,6 +25,10 @@ export type ActivityPost = {
   dateTime: string;
   place: string;
   category: string;
+  cover?: string;
+  coverImage?: string;
+  contentBlocks?: ActivityContentBlock[];
+  hasContentBlocks?: boolean;
   isPinned?: boolean;
   contentHtml?: string;
 };
@@ -48,4 +72,55 @@ export type ParentRunGuestSignupPayload = {
 export type AssistantMessage = {
   role: "user" | "assistant";
   content: string;
+};
+
+export type ProfileUser = {
+  id: number;
+  name: string;
+  email: string;
+  phone: string;
+  avatarUrl?: string;
+  role?: string;
+  city: string;
+  interests: string;
+  bio: string;
+  createdAt: string;
+};
+
+export type ProfileStats = {
+  joinedDays: number;
+  participatedCount: number;
+  upcomingCount: number;
+  unreadCount: number;
+};
+
+export type ProfileParticipation = {
+  id: string;
+  type: "book_club" | "parent_run" | string;
+  title: string;
+  subtitle: string;
+  date: string;
+  time: string;
+  place: string;
+  participantCount: number;
+  status: string;
+  source: string;
+  signedAt: string;
+};
+
+export type ProfileMessage = {
+  id: string;
+  subject: string;
+  body: string;
+  deliveryStatus: string;
+  sentAt?: string;
+  readAt?: string;
+  createdAt: string;
+};
+
+export type ProfilePayload = {
+  user: ProfileUser | null;
+  stats: ProfileStats;
+  participations: ProfileParticipation[];
+  messages: ProfileMessage[];
 };

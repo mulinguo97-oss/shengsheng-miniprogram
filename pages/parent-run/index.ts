@@ -3,12 +3,28 @@ import { ParentRunEvent } from "../../types/domain";
 
 Page({
   data: {
-    events: [] as ParentRunEvent[]
+    events: [] as ParentRunEvent[],
+    loading: false,
+    errorMessage: ""
   },
 
   async onLoad() {
-    const events = await fetchParentRunEvents();
-    this.setData({ events });
+    await this.loadEvents();
+  },
+
+  async loadEvents() {
+    this.setData({ loading: true, errorMessage: "" });
+
+    try {
+      const events = await fetchParentRunEvents();
+      this.setData({ events });
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : "跑团数据暂时不可用，请稍后重试。";
+      this.setData({ events: [], errorMessage });
+      wx.showToast({ title: errorMessage, icon: "none" });
+    } finally {
+      this.setData({ loading: false });
+    }
   },
 
   goDetail(event: WechatMiniprogram.TouchEvent) {

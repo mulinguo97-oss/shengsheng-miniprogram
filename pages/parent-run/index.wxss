@@ -43,3 +43,11 @@
   color: #6d7e63;
   font-size: 24rpx;
 }
+
+.state-text {
+  margin-top: 28rpx;
+}
+
+.error-text {
+  color: #9b4a3a;
+}

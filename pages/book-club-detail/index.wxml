@@ -19,3 +19,6 @@
     <t-button theme="primary" shape="round" block loading="{{submitting}}" disabled="{{submitting}}" bindtap="submitSignup">提交报名意向</t-button>
   </view>
 </view>
+<view class="page detail-page" wx:elif="{{errorMessage}}">
+  <view class="body">{{errorMessage}}</view>
+</view>

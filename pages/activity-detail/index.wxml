@@ -5,10 +5,44 @@
 
   <view class="section card content">
     <view class="body">{{activity.summary}}</view>
-    <view class="body paragraph">后续接入后端内容系统后，这里会展示活动完整正文、图文内容和报名/跳转入口。</view>
+    <view wx:if="{{activity.hasContentBlocks}}" class="content-blocks">
+      <block wx:for="{{activity.contentBlocks}}" wx:key="id" wx:for-item="contentBlock">
+        <view wx:if="{{contentBlock.type == 'heading'}}" class="content-heading content-heading-level-{{contentBlock.level}}">{{contentBlock.text}}</view>
+
+        <view wx:if="{{contentBlock.type == 'paragraph'}}" class="content-paragraph">{{contentBlock.text}}</view>
+
+        <view wx:if="{{contentBlock.type == 'image'}}" class="content-image-block">
+          <image class="content-image" src="{{contentBlock.url}}" mode="widthFix" show-menu-by-longpress="{{true}}" />
+          <view wx:if="{{contentBlock.caption}}" class="content-caption">{{contentBlock.caption}}</view>
+        </view>
+
+        <view wx:if="{{contentBlock.type == 'quote'}}" class="content-quote">{{contentBlock.text}}</view>
+
+        <view wx:if="{{contentBlock.type == 'list'}}" class="content-list content-list-{{contentBlock.style}}">
+          <block wx:for="{{contentBlock.items}}" wx:key="id" wx:for-item="item">
+            <view class="content-list-item">
+              <text class="content-list-marker">{{item.marker}}</text>
+              <text class="content-list-text">{{item.text}}</text>
+            </view>
+          </block>
+        </view>
+
+        <view wx:if="{{contentBlock.type == 'divider'}}" class="content-divider"></view>
+
+        <view wx:if="{{contentBlock.type == 'notice'}}" class="content-notice content-notice-{{contentBlock.variant}}">
+          <view class="content-notice-title">{{contentBlock.title}}</view>
+          <view wx:if="{{contentBlock.text}}" class="content-notice-text">{{contentBlock.text}}</view>
+        </view>
+      </block>
+    </view>
+    <rich-text wx:if="{{!activity.hasContentBlocks && activity.contentHtml}}" class="activity-content-html" nodes="{{activity.contentHtml}}" />
+    <view wx:if="{{!activity.hasContentBlocks && !activity.contentHtml}}" class="body paragraph">暂无活动正文，请关注后续更新。</view>
   </view>
 
   <view class="section">
     <t-button theme="primary" shape="round" block bindtap="goAssistant">咨询生生助手</t-button>
   </view>
+</view>
+<view class="page detail-page" wx:elif="{{errorMessage}}">
+  <view class="body">{{errorMessage}}</view>
 </view>

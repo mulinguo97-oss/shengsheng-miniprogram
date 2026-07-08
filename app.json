@@ -24,19 +24,27 @@
     "list": [
       {
         "pagePath": "pages/home/index",
-        "text": "首页"
+        "text": "首页",
+        "iconPath": "assets/tabbar/home.png",
+        "selectedIconPath": "assets/tabbar/home.png"
       },
       {
         "pagePath": "pages/book-club/index",
-        "text": "读书会"
+        "text": "读书会",
+        "iconPath": "assets/tabbar/book-club.png",
+        "selectedIconPath": "assets/tabbar/book-club.png"
       },
       {
         "pagePath": "pages/parent-run/index",
-        "text": "跑团"
+        "text": "跑团",
+        "iconPath": "assets/tabbar/parent-run.png",
+        "selectedIconPath": "assets/tabbar/parent-run.png"
       },
       {
         "pagePath": "pages/about/index",
-        "text": "了解生生"
+        "text": "个人中心",
+        "iconPath": "assets/tabbar/about.png",
+        "selectedIconPath": "assets/tabbar/about.png"
       }
     ]
   },

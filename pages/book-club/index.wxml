@@ -4,7 +4,10 @@
   <view class="body intro">一期先提供课程列表、场次信息和轻量报名入口；完整会员登录后续再接入。</view>
 
   <view class="section">
-    <block wx:for="{{courses}}" wx:key="id" wx:for-item="course">
+    <view wx:if="{{loading}}" class="body state-text">正在读取服务器数据...</view>
+    <view wx:elif="{{errorMessage}}" class="body state-text error-text">{{errorMessage}}</view>
+    <block wx:else>
+      <block wx:for="{{courses}}" wx:key="id" wx:for-item="course">
       <view class="course-card card">
         <view class="course-head">
           <view>
@@ -20,6 +23,7 @@
         </view>
         <t-button theme="primary" shape="round" data-id="{{course.id}}" bindtap="goDetail">查看并报名</t-button>
       </view>
+      </block>
     </block>
   </view>
 </view>

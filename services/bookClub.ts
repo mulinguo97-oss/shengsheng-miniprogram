@@ -1,4 +1,5 @@
 import { bookClubCourses } from "../data/mock";
+import { shouldUseMockFallback } from "../config/env";
 import { BookClubCourse } from "../types/domain";
 import { request } from "./request";
 
@@ -71,6 +72,10 @@ export async function fetchBookClubCourses(): Promise<BookClubCourse[]> {
     const response = await request<{ courses: ApiBookClubCourse[] }>("/api/book-club/courses");
     return response.data.courses.map(flattenCourse);
   } catch (error) {
+    if (!shouldUseMockFallback()) {
+      throw new Error("读书会数据暂时不可用，请稍后重试。");
+    }
+
     console.warn("fetchBookClubCourses fallback to mock", error);
     return bookClubCourses;
   }
@@ -81,6 +86,10 @@ export async function getBookClubCourse(id: string): Promise<BookClubCourse | un
     const response = await request<{ course: ApiBookClubCourse }>(`/api/book-club/courses/${id}`);
     return flattenCourse(response.data.course);
   } catch (error) {
+    if (!shouldUseMockFallback()) {
+      throw new Error("读书会数据暂时不可用，请稍后重试。");
+    }
+
     console.warn("getBookClubCourse fallback to mock", error);
     return bookClubCourses.find((course) => course.id === id);
   }

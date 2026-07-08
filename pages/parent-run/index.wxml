@@ -4,7 +4,10 @@
   <view class="body intro">一期展示活动时间、集合地点、路线距离、名额和轻量报名入口。</view>
 
   <view class="section">
-    <block wx:for="{{events}}" wx:key="id" wx:for-item="item">
+    <view wx:if="{{loading}}" class="body state-text">正在读取服务器数据...</view>
+    <view wx:elif="{{errorMessage}}" class="body state-text error-text">{{errorMessage}}</view>
+    <block wx:else>
+      <block wx:for="{{events}}" wx:key="id" wx:for-item="item">
       <view class="run-card card">
         <view class="run-date">
           <view class="date-main">{{item.date}}</view>
@@ -19,6 +22,7 @@
         </view>
         <t-button theme="primary" shape="round" data-id="{{item.id}}" bindtap="goDetail">查看并报名</t-button>
       </view>
+      </block>
     </block>
   </view>
 </view>

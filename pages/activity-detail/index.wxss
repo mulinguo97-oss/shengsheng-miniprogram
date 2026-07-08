@@ -12,3 +12,118 @@
 .paragraph {
   margin-top: 20rpx;
 }
+
+.activity-content-html {
+  display: block;
+  margin-top: 26rpx;
+  color: #4d5849;
+  font-size: 28rpx;
+  line-height: 1.8;
+}
+
+.content-blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+  margin-top: 28rpx;
+}
+
+.content-heading {
+  color: #263821;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.content-heading-level-1 {
+  font-size: 38rpx;
+}
+
+.content-heading-level-2 {
+  font-size: 34rpx;
+}
+
+.content-heading-level-3 {
+  font-size: 30rpx;
+}
+
+.content-paragraph,
+.content-quote,
+.content-list-text,
+.content-notice-text {
+  color: #4d5849;
+  font-size: 28rpx;
+  line-height: 1.8;
+}
+
+.content-image-block {
+  overflow: hidden;
+}
+
+.content-image {
+  display: block;
+  width: 100%;
+  border-radius: 12rpx;
+  background: #efe8d8;
+}
+
+.content-caption {
+  margin-top: 12rpx;
+  color: #7a6f5c;
+  font-size: 24rpx;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.content-quote {
+  padding: 22rpx 26rpx;
+  border-left: 8rpx solid #8b9a62;
+  background: #f8f3e7;
+}
+
+.content-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14rpx;
+}
+
+.content-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14rpx;
+}
+
+.content-list-marker {
+  min-width: 42rpx;
+  color: #6b7f55;
+  font-size: 28rpx;
+  line-height: 1.8;
+}
+
+.content-divider {
+  height: 1px;
+  background: #e3dac8;
+}
+
+.content-notice {
+  padding: 24rpx;
+  border-radius: 16rpx;
+  border: 1px solid #ddd2ba;
+  background: #fbf7ed;
+}
+
+.content-notice-success {
+  border-color: #becb9f;
+  background: #f4f8ed;
+}
+
+.content-notice-warning {
+  border-color: #e0bf86;
+  background: #fff7e8;
+}
+
+.content-notice-title {
+  margin-bottom: 8rpx;
+  color: #31482f;
+  font-size: 28rpx;
+  font-weight: 700;
+}

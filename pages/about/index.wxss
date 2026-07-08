@@ -1,21 +1,116 @@
-.intro {
-  margin-top: 20rpx;
+.profile-hero {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20rpx;
+  padding: 32rpx;
 }
 
-.values {
+.profile-avatar {
+  flex-shrink: 0;
+  width: 112rpx;
+  height: 112rpx;
+  border: 2rpx solid #d7cfbd;
+  border-radius: 999rpx;
+  background: #f1e7d8;
+}
+
+.hero-note {
+  margin-top: 18rpx;
+}
+
+.login-card,
+.profile-form {
   display: grid;
-  gap: 24rpx;
+  gap: 22rpx;
   padding: 30rpx;
 }
 
-.value-item + .value-item {
-  border-top: 1rpx solid #e1dfd1;
-  padding-top: 24rpx;
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18rpx;
 }
 
-.value-title {
-  margin-bottom: 8rpx;
+.stat-card {
+  padding: 26rpx 20rpx;
+  text-align: center;
+}
+
+.stat-number {
+  color: #314d37;
+  font-size: 42rpx;
+  font-weight: 700;
+}
+
+.stat-label {
+  margin-top: 6rpx;
+  color: #6f8069;
+  font-size: 24rpx;
+}
+
+.section-title {
   color: #314d37;
   font-size: 32rpx;
   font-weight: 700;
+}
+
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20rpx;
+  margin-bottom: 10rpx;
+}
+
+.message-item,
+.participation-item {
+  margin-top: 20rpx;
+  border-top: 1rpx solid #e1dfd1;
+  padding-top: 20rpx;
+}
+
+.message-unread {
+  border-top-color: #9bad8a;
+}
+
+.message-title,
+.participation-title {
+  color: #314d37;
+  font-size: 30rpx;
+  font-weight: 700;
+}
+
+.message-body,
+.participation-detail {
+  margin-top: 10rpx;
+}
+
+.message-meta,
+.participation-meta {
+  margin-top: 12rpx;
+  color: #7b8675;
+  font-size: 24rpx;
+  line-height: 1.6;
+}
+
+.participation-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18rpx;
+}
+
+.status-pill {
+  flex-shrink: 0;
+  border-radius: 999rpx;
+  background: #e5ead8;
+  padding: 6rpx 16rpx;
+  color: #4f714d;
+  font-size: 22rpx;
+}
+
+.empty-text,
+.state-text {
+  margin-top: 28rpx;
 }

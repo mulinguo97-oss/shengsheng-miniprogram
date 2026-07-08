@@ -1,7 +1,7 @@
 <view class="page assistant-page">
   <view class="eyebrow">多智能体协同</view>
   <view class="title">生生助手</view>
-  <view class="body intro">一期先使用本地兜底回答；后续接入后端编排器，路由到品牌顾问、读书会顾问和跑团助手。</view>
+  <view class="body intro">通过后端统一编排器，路由到品牌顾问、读书会顾问和跑团助手；体验版和正式版统一读取服务器服务。</view>
 
   <view class="preset-list">
     <t-tag data-question="生生文化是什么？" bindtap="askPreset">生生文化</t-tag>

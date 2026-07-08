@@ -10,6 +10,7 @@ Page({
         content: "你好，我是生生助手。可以咨询生生文化、读书会、亲子跑团和活动报名。"
       }
     ] as AssistantMessage[],
+    sessionId: "",
     loading: false
   },
 
@@ -33,11 +34,12 @@ Page({
     });
 
     try {
-      const answer = await askAssistant(content, nextMessages);
+      const response = await askAssistant(content, nextMessages, this.data.sessionId);
       this.setData({
+        sessionId: response.sessionId || this.data.sessionId,
         messages: [
           ...nextMessages,
-          { role: "assistant" as const, content: answer }
+          { role: "assistant" as const, content: response.answer }
         ]
       });
     } catch (error) {

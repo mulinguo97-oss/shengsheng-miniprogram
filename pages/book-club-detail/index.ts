@@ -4,6 +4,7 @@ import { BookClubCourse } from "../../types/domain";
 Page({
   data: {
     course: undefined as BookClubCourse | undefined,
+    errorMessage: "",
     name: "",
     phone: "",
     participantCount: "1",
@@ -12,13 +13,21 @@ Page({
   },
 
   async onLoad(query: Record<string, string | undefined>) {
-    const course = await getBookClubCourse(query.id || "");
-    if (!course) {
-      wx.showToast({ title: "课程不存在", icon: "none" });
-      return;
-    }
+    try {
+      const course = await getBookClubCourse(query.id || "");
+      if (!course) {
+        const errorMessage = "课程不存在";
+        this.setData({ errorMessage });
+        wx.showToast({ title: errorMessage, icon: "none" });
+        return;
+      }
 
-    this.setData({ course });
+      this.setData({ course });
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : "读书会数据暂时不可用，请稍后重试。";
+      this.setData({ errorMessage });
+      wx.showToast({ title: errorMessage, icon: "none" });
+    }
   },
 
   onNameChange(event: WechatMiniprogram.CustomEvent<{ value: string }>) {
