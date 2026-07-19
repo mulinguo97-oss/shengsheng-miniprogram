@@ -1,13 +1,10 @@
 export type RuntimeEnv = "develop" | "trial" | "release";
 
 const serverApiBaseUrl = "https://shengshengcorp.com";
-const localApiBaseUrl = "http://127.0.0.1:3001";
-const useLocalApiInDevelop = false;
-const enableMockFallbackInDevelop = false;
 
 export const runtimeConfig: Record<RuntimeEnv, { apiBaseUrl: string }> = {
   develop: {
-    apiBaseUrl: useLocalApiInDevelop ? localApiBaseUrl : serverApiBaseUrl
+    apiBaseUrl: serverApiBaseUrl
   },
   trial: {
     apiBaseUrl: serverApiBaseUrl
@@ -23,7 +20,7 @@ export function getRuntimeEnv(): RuntimeEnv {
 }
 
 export function shouldUseMockFallback() {
-  return enableMockFallbackInDevelop && getRuntimeEnv() === "develop";
+  return false;
 }
 
 export function getApiBaseUrl() {

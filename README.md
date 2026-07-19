@@ -25,11 +25,7 @@ pnpm run typecheck
 https://shengshengcorp.com
 ```
 
-如需临时调试本机后端，可在 `config/env.ts` 中把 `useLocalApiInDevelop` 改为 `true`。本地接口调试时，需在微信开发者工具中打开：
-
-```text
-详情 -> 本地设置 -> 不校验合法域名、web-view（业务域名）、TLS 版本以及 HTTPS 证书
-```
+小程序端只保存 API 域名，不保存 `DATABASE_URL`、PostgreSQL 用户名密码、微信 AppSecret、DeepSeek API Key、管理员账号密码、服务器私钥或上传密钥。数据库连接、权限校验、参数校验、名额校验和多智能体编排均由服务器后端完成。
 
 ## 接口依赖
 
@@ -50,7 +46,7 @@ https://shengshengcorp.com
 - `PUT /api/profile/messages/:id/read`
 - `POST /api/agents/chat`
 
-`config/env.ts` 中 `develop`、`trial` 和 `release` 均已指向 `https://shengshengcorp.com`。默认不再静默回退 mock，接口失败会展示错误提示，确保小程序和网页共用服务器 PostgreSQL 数据源；`data/mock.ts` 仅保留为手动开启 `enableMockFallbackInDevelop` 时的开发兜底，且内容已按网页线上接口口径同步。
+`config/env.ts` 中 `develop`、`trial` 和 `release` 均已指向 `https://shengshengcorp.com`。小程序端不再保留本机 API 开关，也不再静默回退 mock；接口失败会展示错误提示，确保小程序和网页共用服务器 API 与 PostgreSQL 数据源。
 
 ## 仓库边界
 
