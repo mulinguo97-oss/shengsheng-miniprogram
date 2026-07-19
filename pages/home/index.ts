@@ -1,29 +1,30 @@
-import { fetchActivityPosts } from "../../services/activities";
-import { ActivityPost } from "../../types/domain";
+import { featuredBooks, selectFeaturedBooks } from "../../data/books";
+import { fetchBooks } from "../../services/bookContent";
+import { Book } from "../../types/domain";
 
 Page({
   data: {
-    activities: [] as ActivityPost[],
-    loadingActivities: false,
-    activityErrorMessage: ""
+    books: featuredBooks as Book[],
+    syncing: false,
+    syncMessage: ""
   },
 
   async onLoad() {
-    await this.loadActivities();
+    await this.loadBooks();
   },
 
-  async loadActivities() {
-    this.setData({ loadingActivities: true, activityErrorMessage: "" });
-
+  async loadBooks() {
+    this.setData({ syncing: true, syncMessage: "" });
     try {
-      const activities = await fetchActivityPosts();
-      this.setData({ activities });
+      this.setData({ books: selectFeaturedBooks(await fetchBooks()) });
     } catch (error) {
-      const activityErrorMessage = error instanceof Error ? error.message : "活动数据暂时不可用，请稍后重试。";
-      this.setData({ activities: [], activityErrorMessage });
-      wx.showToast({ title: activityErrorMessage, icon: "none" });
+      console.warn("书籍公开信息同步失败，保留首发书籍信息", error);
+      this.setData({
+        books: featuredBooks,
+        syncMessage: "书籍详细信息正在同步，当前可先查看首发书目。"
+      });
     } finally {
-      this.setData({ loadingActivities: false });
+      this.setData({ syncing: false });
     }
   },
 
@@ -31,16 +32,9 @@ Page({
     wx.switchTab({ url: "/pages/book-club/index" });
   },
 
-  goParentRun() {
-    wx.switchTab({ url: "/pages/parent-run/index" });
-  },
-
-  goAssistant() {
-    wx.navigateTo({ url: "/pages/assistant/index" });
-  },
-
-  goActivityDetail(event: WechatMiniprogram.TouchEvent) {
-    const id = event.currentTarget.dataset.id as string;
-    wx.navigateTo({ url: `/pages/activity-detail/index?id=${id}` });
+  goBookDetail(event: WechatMiniprogram.TouchEvent) {
+    const id = String(event.currentTarget.dataset.id || "");
+    if (!id) return;
+    wx.navigateTo({ url: `/pages/book-club-detail/index?id=${encodeURIComponent(id)}` });
   }
 });

@@ -3,11 +3,7 @@
     "pages/home/index",
     "pages/book-club/index",
     "pages/book-club-detail/index",
-    "pages/parent-run/index",
-    "pages/parent-run-detail/index",
-    "pages/activity-detail/index",
-    "pages/about/index",
-    "pages/assistant/index"
+    "pages/about/index"
   ],
   "window": {
     "navigationBarTitleText": "生生",
@@ -35,19 +31,14 @@
         "selectedIconPath": "assets/tabbar/book-club.png"
       },
       {
-        "pagePath": "pages/parent-run/index",
-        "text": "跑团",
-        "iconPath": "assets/tabbar/parent-run.png",
-        "selectedIconPath": "assets/tabbar/parent-run.png"
-      },
-      {
         "pagePath": "pages/about/index",
-        "text": "个人中心",
+        "text": "我的",
         "iconPath": "assets/tabbar/about.png",
         "selectedIconPath": "assets/tabbar/about.png"
       }
     ]
   },
+  "requiredBackgroundModes": ["audio"],
   "style": "v2",
   "lazyCodeLoading": "requiredComponents",
   "sitemapLocation": "sitemap.json"

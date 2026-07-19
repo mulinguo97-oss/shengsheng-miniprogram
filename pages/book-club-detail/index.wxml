@@ -1,24 +1,136 @@
-<view class="page detail-page" wx:if="{{course}}">
-  <view class="eyebrow">生生读书会</view>
-  <view class="title">{{course.bookTitle}}</view>
-  <view class="detail-meta">主讲：{{course.lecturer}} · {{course.nextSessionDate}} {{course.nextSessionTime}}</view>
-
-  <view class="section card content">
-    <view class="body">{{course.summary}}</view>
-    <view class="body paragraph">地点：{{course.place}}</view>
-    <view class="body paragraph">说明：{{course.notes}}</view>
-    <view class="body paragraph">当前关注：{{course.participantCount}} / {{course.capacity}} 人</view>
+<view class="page detail-page" wx:if="{{book}}">
+  <view class="book-hero card">
+    <image class="book-cover" src="{{book.coverUrl}}" mode="aspectFill" />
+    <view class="book-hero-copy">
+      <view class="eyebrow">{{book.author.name}} · 著</view>
+      <view class="book-title">《{{book.title}}》</view>
+      <view class="body hero-summary">{{book.summary}}</view>
+    </view>
   </view>
 
-  <view class="section card form-card">
-    <view class="form-title">报名意向</view>
-    <t-input label="姓名" placeholder="请输入姓名" value="{{name}}" bind:change="onNameChange" />
-    <t-input label="手机号" placeholder="请输入手机号" value="{{phone}}" type="number" bind:change="onPhoneChange" />
-    <t-input label="人数" placeholder="报名人数" value="{{participantCount}}" type="number" bind:change="onCountChange" />
-    <t-textarea label="备注" placeholder="可填写孩子年龄、同行情况或关注问题" value="{{note}}" bind:change="onNoteChange" />
-    <t-button theme="primary" shape="round" block loading="{{submitting}}" disabled="{{submitting}}" bindtap="submitSignup">提交报名意向</t-button>
+  <view class="section card introduction-card">
+    <view class="section-title">作者介绍</view>
+    <view class="body section-copy">{{book.author.biography}}</view>
+    <view class="section-title book-intro-title">本书介绍</view>
+    <view class="body section-copy">{{book.introduction}}</view>
+  </view>
+
+  <view class="section access-card {{book.access.authorized ? 'access-active' : ''}}">
+    <view>
+      <view class="access-label">{{accessLabel}}</view>
+      <view class="access-message">{{book.access.message}}</view>
+      <view wx:if="{{book.access.expiresAt}}" class="access-expiry">有效期至 {{book.access.expiresAt}}</view>
+    </view>
+    <t-button wx:if="{{!book.access.authorized}}" size="small" shape="round" variant="outline" bindtap="goMy">前往我的</t-button>
+  </view>
+
+  <view class="section">
+    <view class="section-heading">
+      <view>
+        <view class="section-title">听音频</view>
+        <view class="section-note">主要学习入口 · 支持后台播放与锁屏控制</view>
+      </view>
+    </view>
+
+    <view class="audio-player card">
+      <view class="player-kicker">正在播放</view>
+      <view class="player-title">{{playerTitle}}</view>
+      <slider min="0" max="{{playerSliderMax}}" value="{{playerCurrentTime}}" activeColor="#587a5b" backgroundColor="#d9dfd1" block-size="18" bindchange="onSeek" />
+      <view class="player-time">
+        <text>{{playerCurrentTimeLabel}}</text>
+        <text>{{playerDurationLabel}}</text>
+      </view>
+      <view class="player-controls">
+        <t-button size="small" shape="round" variant="outline" bindtap="seekBackward">-15 秒</t-button>
+        <t-button wx:if="{{playerPlaying}}" theme="primary" shape="round" bindtap="pauseAudio">暂停</t-button>
+        <view wx:else class="player-idle">{{playerWaiting ? '加载中...' : '选择下方音频开始收听'}}</view>
+        <t-button size="small" shape="round" variant="outline" bindtap="seekForward">+15 秒</t-button>
+      </view>
+      <view class="rate-row">
+        <block wx:for="{{playbackRates}}" wx:key="*this" wx:for-item="rate">
+          <button class="rate-button {{playbackRate == rate ? 'rate-active' : ''}}" data-rate="{{rate}}" bindtap="changeRate">{{rate}}x</button>
+        </block>
+      </view>
+      <view wx:if="{{playerErrorMessage}}" class="player-error">{{playerErrorMessage}}</view>
+    </view>
+
+    <view wx:if="{{!audioResources.length}}" class="resource-placeholder card">
+      <view class="placeholder-icon">音</view>
+      <view>
+        <view class="placeholder-title">音频内容准备中</view>
+        <view class="body">管理员上传并发布音频后，将在这里按顺序展示。</view>
+      </view>
+    </view>
+    <block wx:else>
+      <block wx:for="{{audioResources}}" wx:key="id" wx:for-item="resource">
+        <view class="resource-row card">
+          <view class="resource-index">{{index + 1}}</view>
+          <view class="resource-copy">
+            <view class="resource-title">{{resource.title}}</view>
+            <view class="resource-description">{{resource.description}}</view>
+          </view>
+          <t-button size="small" shape="round" theme="primary" data-id="{{resource.id}}" loading="{{loadingResourceId == resource.id}}" bindtap="playAudio">
+            {{currentResourceId == resource.id && playerPlaying ? '暂停' : '播放'}}
+          </t-button>
+        </view>
+      </block>
+    </block>
+  </view>
+
+  <view class="section">
+    <view class="section-title">看视频</view>
+    <view class="section-note">辅助内容 · 后续由管理员上传发布</view>
+    <video wx:if="{{selectedVideoUrl}}" class="video-player" src="{{selectedVideoUrl}}" title="{{selectedVideoTitle}}" controls enable-progress-gesture />
+    <view wx:if="{{!videoResources.length}}" class="resource-placeholder card">
+      <view class="placeholder-icon">视</view>
+      <view>
+        <view class="placeholder-title">视频内容准备中</view>
+        <view class="body">这里已预留视频列表和播放位置。</view>
+      </view>
+    </view>
+    <block wx:else>
+      <block wx:for="{{videoResources}}" wx:key="id" wx:for-item="resource">
+        <view class="resource-row card">
+          <view class="placeholder-icon small">视</view>
+          <view class="resource-copy">
+            <view class="resource-title">{{resource.title}}</view>
+            <view class="resource-description">{{resource.description}}</view>
+          </view>
+          <t-button size="small" shape="round" variant="outline" data-id="{{resource.id}}" loading="{{loadingResourceId == resource.id}}" bindtap="openVideo">观看</t-button>
+        </view>
+      </block>
+    </block>
+  </view>
+
+  <view class="section">
+    <view class="section-title">看原书</view>
+    <view class="section-note">PDF 原书 · 授权后安全打开</view>
+    <view wx:if="{{!ebookResources.length}}" class="resource-placeholder card">
+      <view class="placeholder-icon">书</view>
+      <view>
+        <view class="placeholder-title">原书内容准备中</view>
+        <view class="body">这里已预留原书说明和阅读入口。</view>
+      </view>
+    </view>
+    <block wx:else>
+      <block wx:for="{{ebookResources}}" wx:key="id" wx:for-item="resource">
+        <view class="resource-row card">
+          <view class="placeholder-icon small">书</view>
+          <view class="resource-copy">
+            <view class="resource-title">{{resource.title}}</view>
+            <view class="resource-description">{{resource.description}}</view>
+          </view>
+          <t-button size="small" shape="round" variant="outline" data-id="{{resource.id}}" loading="{{loadingResourceId == resource.id}}" bindtap="openEbook">打开</t-button>
+        </view>
+      </block>
+    </block>
   </view>
 </view>
-<view class="page detail-page" wx:elif="{{errorMessage}}">
-  <view class="body">{{errorMessage}}</view>
+
+<view class="page detail-page" wx:elif="{{loading}}">
+  <view class="body">正在读取书籍信息...</view>
+</view>
+
+<view class="page detail-page" wx:else>
+  <view class="body">{{errorMessage || '书籍暂时不可用。'}}</view>
 </view>

@@ -1,65 +1,73 @@
 .home-page {
-  padding: 0 0 48rpx;
+  padding-bottom: 56rpx;
 }
 
-.home-poster {
-  display: block;
-  width: 100%;
-  height: 25vh;
+.home-hero {
+  border-radius: 28rpx;
+  background: linear-gradient(145deg, #e1ead6, #f7f1e4);
+  padding: 46rpx 36rpx;
 }
 
-.activity-feed {
-  padding: 28rpx;
+.hero-copy {
+  margin: 22rpx 0 30rpx;
 }
 
-.activity-card {
-  overflow: hidden;
+.sync-note {
   margin-top: 24rpx;
-}
-
-.activity-card:first-child {
-  margin-top: 0;
-}
-
-.activity-cover {
-  display: block;
-  width: 100%;
-  height: 280rpx;
-  background: #e5ead8;
-}
-
-.activity-content {
-  padding: 28rpx;
-}
-
-.activity-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16rpx;
-}
-
-.activity-date,
-.activity-place {
   color: #7b8675;
   font-size: 24rpx;
+  text-align: center;
 }
 
-.activity-title {
-  margin-top: 18rpx;
+.book-grid {
+  display: grid;
+  gap: 28rpx;
+  margin-top: 32rpx;
+}
+
+.book-card {
+  display: flex;
+  min-height: 300rpx;
+  overflow: hidden;
+}
+
+.book-cover {
+  flex-shrink: 0;
+  width: 220rpx;
+  min-height: 300rpx;
+  background: #dfe7d3;
+}
+
+.book-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 28rpx;
+}
+
+.book-author {
+  color: #6d7e63;
+  font-size: 24rpx;
+  letter-spacing: 2rpx;
+}
+
+.book-title {
+  margin-top: 14rpx;
   color: #314d37;
-  font-size: 32rpx;
+  font-size: 30rpx;
   font-weight: 700;
+  line-height: 1.5;
 }
 
-.activity-place {
-  margin-top: 18rpx;
+.book-summary {
+  margin-top: 14rpx;
+  font-size: 25rpx;
 }
 
-.state-text {
-  margin-top: 28rpx;
-}
-
-.error-text {
-  color: #9b4a3a;
+.book-link {
+  margin-top: auto;
+  padding-top: 18rpx;
+  color: #587a5b;
+  font-size: 25rpx;
+  font-weight: 600;
 }

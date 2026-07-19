@@ -48,6 +48,61 @@ export type BookClubCourse = {
   notes?: string;
 };
 
+export type BookAccessStatus = "guest" | "unauthorized" | "active" | "paused" | "expired" | "revoked";
+
+export type BookAuthor = {
+  id: string;
+  name: string;
+  biography: string;
+  avatarUrl?: string;
+};
+
+export type BookResourceType = "audio" | "video" | "ebook";
+
+export type BookContentResource = {
+  id: string;
+  bookId: string;
+  type: BookResourceType;
+  title: string;
+  description: string;
+  durationSeconds: number;
+  sortOrder: number;
+  status: "placeholder" | "published";
+  coverUrl?: string;
+  progressSeconds?: number;
+  completed?: boolean;
+};
+
+export type BookAccess = {
+  status: BookAccessStatus;
+  authorized: boolean;
+  startsAt?: string;
+  expiresAt?: string;
+  message: string;
+};
+
+export type Book = {
+  id: string;
+  slug: string;
+  title: string;
+  subtitle: string;
+  summary: string;
+  introduction: string;
+  coverUrl: string;
+  author: BookAuthor;
+  access: BookAccess;
+  resources: BookContentResource[];
+};
+
+export type ResourceAccess = {
+  resourceId: string;
+  authorized: boolean;
+  status: BookAccessStatus;
+  url?: string;
+  expiresAt?: string;
+  message: string;
+};
+
 export type ParentRunEvent = {
   id: string;
   date: string;

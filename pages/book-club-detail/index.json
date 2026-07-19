@@ -1,9 +1,6 @@
 {
-  "navigationBarTitleText": "读书会详情",
+  "navigationBarTitleText": "书籍分区",
   "usingComponents": {
-    "t-button": "tdesign-miniprogram/button/button",
-    "t-input": "tdesign-miniprogram/input/input",
-    "t-textarea": "tdesign-miniprogram/textarea/textarea",
-    "t-tag": "tdesign-miniprogram/tag/tag"
+    "t-button": "tdesign-miniprogram/button/button"
   }
 }

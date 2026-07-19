@@ -1,3 +1,5 @@
+import { initializeBackgroundAudio } from "./services/backgroundAudio";
+
 App<IAppOption>({
   globalData: {
     apiBaseUrl: "",
@@ -7,5 +9,6 @@ App<IAppOption>({
   onLaunch() {
     const accountInfo = wx.getAccountInfoSync();
     this.globalData.envVersion = accountInfo.miniProgram.envVersion;
+    initializeBackgroundAudio();
   }
 });

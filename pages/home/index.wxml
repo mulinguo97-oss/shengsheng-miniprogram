@@ -1,24 +1,25 @@
 <view class="page home-page">
-  <image class="home-poster" src="/assets/home-poster.jpg" mode="aspectFill" />
+  <view class="home-hero">
+    <view class="eyebrow">生生读书会</view>
+    <view class="title">听见经典，也听见自己</view>
+    <view class="body hero-copy">以赵玲玲老师著作为起点，建立持续、安静、有深度的阅读节奏。</view>
+    <t-button theme="primary" shape="round" bindtap="goBookClub">进入读书会</t-button>
+  </view>
 
-  <view class="activity-feed">
-    <view wx:if="{{loadingActivities}}" class="body state-text">正在读取服务器数据...</view>
-    <view wx:elif="{{activityErrorMessage}}" class="body state-text error-text">{{activityErrorMessage}}</view>
-    <block wx:else>
-      <block wx:for="{{activities}}" wx:key="id" wx:for-item="activity">
-        <view class="activity-card card" data-id="{{activity.id}}" bindtap="goActivityDetail">
-          <image class="activity-cover" src="{{activity.coverImage}}" mode="aspectFill" />
-          <view class="activity-content">
-            <view class="activity-top">
-              <t-tag theme="{{activity.isPinned ? 'success' : 'default'}}" variant="light">{{activity.category}}</t-tag>
-              <text class="activity-date">{{activity.dateTime}}</text>
-            </view>
-            <view class="activity-title">{{activity.title}}</view>
-            <view class="body">{{activity.summary}}</view>
-            <view class="activity-place">{{activity.place}}</view>
-          </view>
+  <view wx:if="{{syncing}}" class="sync-note">正在同步书籍信息...</view>
+  <view wx:elif="{{syncMessage}}" class="sync-note">{{syncMessage}}</view>
+
+  <view class="book-grid">
+    <block wx:for="{{books}}" wx:key="id" wx:for-item="book">
+      <view class="book-card card" data-id="{{book.id}}" bindtap="goBookDetail">
+        <image class="book-cover" src="{{book.coverUrl}}" mode="aspectFill" />
+        <view class="book-content">
+          <view class="book-author">{{book.author.name}} · 著</view>
+          <view class="book-title">《{{book.title}}》</view>
+          <view class="body book-summary">{{book.summary}}</view>
+          <view class="book-link">进入书籍分区 →</view>
         </view>
-      </block>
+      </view>
     </block>
   </view>
 </view>

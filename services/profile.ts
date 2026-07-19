@@ -15,12 +15,22 @@ export type ProfileUpdatePayload = {
 };
 
 export async function loginProfile(payload: LoginPayload) {
-  await request("/api/auth/login", {
+  const login = await request<{ user?: { mustChangePassword?: boolean } }>("/api/auth/login", {
     method: "POST",
     data: payload
   });
 
-  return fetchProfile();
+  return {
+    profile: await fetchProfile(),
+    mustChangePassword: Boolean(login.data.user?.mustChangePassword)
+  };
+}
+
+export async function changeProfilePassword(currentPassword: string, newPassword: string) {
+  await request("/api/auth/change-password", {
+    method: "POST",
+    data: { currentPassword, newPassword }
+  });
 }
 
 export async function logoutProfile() {

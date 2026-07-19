@@ -1,7 +1,6 @@
 {
   "navigationBarTitleText": "生生读书会",
   "usingComponents": {
-    "t-button": "tdesign-miniprogram/button/button",
-    "t-tag": "tdesign-miniprogram/tag/tag"
+    "t-button": "tdesign-miniprogram/button/button"
   }
 }

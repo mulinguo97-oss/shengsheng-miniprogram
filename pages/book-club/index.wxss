@@ -2,46 +2,60 @@
   margin-top: 20rpx;
 }
 
-.course-card {
-  margin-top: 22rpx;
-  padding: 30rpx;
-}
-
-.course-head {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 20rpx;
-}
-
-.course-title {
-  color: #314d37;
-  font-size: 34rpx;
-  font-weight: 700;
-}
-
-.course-lecturer {
-  margin-top: 10rpx;
-  color: #6d7e63;
-  font-size: 26rpx;
-}
-
-.course-summary {
-  margin-top: 20rpx;
-}
-
-.course-meta {
-  display: flex;
-  justify-content: space-between;
-  margin: 26rpx 0;
+.state-text {
+  margin-top: 24rpx;
   color: #7b8675;
   font-size: 24rpx;
 }
 
-.state-text {
-  margin-top: 28rpx;
+.book-list {
+  display: grid;
+  gap: 30rpx;
 }
 
-.error-text {
-  color: #9b4a3a;
+.book-card {
+  overflow: hidden;
+}
+
+.book-cover {
+  display: block;
+  width: 100%;
+  height: 330rpx;
+  background: #dfe7d3;
+}
+
+.book-copy {
+  padding: 32rpx;
+}
+
+.author-line {
+  color: #6d7e63;
+  font-size: 25rpx;
+  letter-spacing: 2rpx;
+}
+
+.book-title {
+  margin-top: 14rpx;
+  color: #314d37;
+  font-size: 34rpx;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.summary {
+  margin-top: 18rpx;
+}
+
+.resource-chips {
+  display: flex;
+  gap: 14rpx;
+  margin: 24rpx 0;
+}
+
+.resource-chips text {
+  border-radius: 999rpx;
+  background: #e5ead8;
+  padding: 8rpx 18rpx;
+  color: #4f714d;
+  font-size: 23rpx;
 }

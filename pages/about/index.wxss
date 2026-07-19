@@ -15,6 +15,11 @@
   background: #f1e7d8;
 }
 
+.profile-hero-copy {
+  flex: 1;
+  min-width: 0;
+}
+
 .hero-note {
   margin-top: 18rpx;
 }
@@ -113,4 +118,50 @@
 .empty-text,
 .state-text {
   margin-top: 28rpx;
+}
+
+.my-books-card,
+.notice-card {
+  padding: 30rpx;
+}
+
+.my-book-item {
+  display: flex;
+  gap: 22rpx;
+  margin-top: 24rpx;
+  border-top: 1rpx solid #e1dfd1;
+  padding-top: 24rpx;
+}
+
+.my-book-cover {
+  flex-shrink: 0;
+  width: 126rpx;
+  height: 168rpx;
+  border-radius: 10rpx;
+  background: #dfe7d3;
+}
+
+.my-book-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.my-book-title {
+  color: #314d37;
+  font-size: 28rpx;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.my-book-author,
+.my-book-link {
+  margin-top: 12rpx;
+  color: #73806e;
+  font-size: 23rpx;
+  line-height: 1.5;
+}
+
+.my-book-link {
+  color: #587a5b;
+  font-weight: 600;
 }

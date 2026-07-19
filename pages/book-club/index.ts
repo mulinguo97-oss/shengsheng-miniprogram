@@ -1,34 +1,36 @@
-import { fetchBookClubCourses } from "../../services/bookClub";
-import { BookClubCourse } from "../../types/domain";
+import { featuredBooks, selectFeaturedBooks } from "../../data/books";
+import { fetchBooks } from "../../services/bookContent";
+import { Book } from "../../types/domain";
 
 Page({
   data: {
-    courses: [] as BookClubCourse[],
+    books: featuredBooks as Book[],
     loading: false,
     errorMessage: ""
   },
 
-  async onLoad() {
-    await this.loadCourses();
+  async onShow() {
+    await this.loadBooks();
   },
 
-  async loadCourses() {
+  async loadBooks() {
     this.setData({ loading: true, errorMessage: "" });
-
     try {
-      const courses = await fetchBookClubCourses();
-      this.setData({ courses });
+      this.setData({ books: selectFeaturedBooks(await fetchBooks()) });
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : "读书会数据暂时不可用，请稍后重试。";
-      this.setData({ courses: [], errorMessage });
-      wx.showToast({ title: errorMessage, icon: "none" });
+      console.warn("读取书籍列表失败，显示首发书目", error);
+      this.setData({
+        books: featuredBooks,
+        errorMessage: "书籍详细信息暂未同步，当前展示首发书目。"
+      });
     } finally {
       this.setData({ loading: false });
     }
   },
 
   goDetail(event: WechatMiniprogram.TouchEvent) {
-    const courseId = event.currentTarget.dataset.id as string;
-    wx.navigateTo({ url: `/pages/book-club-detail/index?id=${courseId}` });
+    const bookId = String(event.currentTarget.dataset.id || "");
+    if (!bookId) return;
+    wx.navigateTo({ url: `/pages/book-club-detail/index?id=${encodeURIComponent(bookId)}` });
   }
 });

@@ -7,6 +7,16 @@ export type ApiResult<T> = {
 
 export type RequestOptions = Omit<WechatMiniprogram.RequestOption, "url">;
 
+export class ApiRequestError extends Error {
+  readonly statusCode: number;
+
+  constructor(message: string, statusCode: number) {
+    super(message);
+    this.name = "ApiRequestError";
+    this.statusCode = statusCode;
+  }
+}
+
 const authCookieStorageKey = "shengsheng_auth_cookie";
 
 function getStoredAuthCookie() {
@@ -69,7 +79,7 @@ export function request<T>(path: string, options: RequestOptions = {}): Promise<
         }
 
         const errorBody = response.data as { message?: string } | undefined;
-        reject(new Error(errorBody?.message || `请求失败：${response.statusCode}`));
+        reject(new ApiRequestError(errorBody?.message || `请求失败：${response.statusCode}`, response.statusCode));
       },
       fail(error) {
         reject(error);
